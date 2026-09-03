@@ -230,7 +230,7 @@ linked_parent_graph_frame = 85
 linked_parent_graph_frame = 85
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_tyodl"]
-size = Vector2(1664, 582)
+size = Vector2(1664, 716)
 title = "Dithering"
 attached_nodes = PackedInt32Array(76, 75, 82, 80, 83, 84, 81, 79, 78, 77, 96)
 
@@ -239,23 +239,23 @@ attached_nodes = PackedInt32Array(76, 75, 82, 80, 83, 84, 81, 79, 78, 77, 96)
 [sub_resource type="VisualShaderNodeReroute" id="VisualShaderNodeReroute_i5v01"]
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_refu8"]
-size = Vector2(1384, 162)
-title = "Greyscale"
+size = Vector2(1384, 295)
+title = "Grayscale"
 attached_nodes = PackedInt32Array(51, 52, 55, 54, 53)
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_yx3o0"]
-size = Vector2(2944, 522)
-title = "Effet de \"vignette transparente\" autour de l'écran"
+size = Vector2(2944, 607)
+title = "vignette effect"
 attached_nodes = PackedInt32Array(56, 69, 68, 67, 60, 66, 65, 64, 63, 62, 61, 59, 58, 57)
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_i5v01"]
-size = Vector2(1904, 162)
-title = "Crée un effet de vague pour ajouter du peps/de la variation"
+size = Vector2(1907, 391)
+title = "Creates a wave effect to make the visualizer more dynamic"
 attached_nodes = PackedInt32Array(11, 2, 10, 13, 6, 12, 14)
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_lhxox"]
-size = Vector2(1484, 602)
-title = "Changement de l'intensité de la couleur selon celle de la musique"
+size = Vector2(1484, 709)
+title = "We change the color intensity according to the music's"
 attached_nodes = PackedInt32Array(50, 43, 71, 70, 72, 42, 73)
 
 [sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_u0eck"]

@@ -714,7 +714,7 @@ text = "By BegulaTheMoai"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5036601)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D" unique_id=1348569737]
-transform = Transform3D(0.9702956, 0.2419221, 4.824251e-07, -0.23853417, 0.95670766, -0.16676861, -0.04034547, 0.16181472, 0.98599607, 0, 0, 0)
+transform = Transform3D(0.97029555, 0.24192208, 4.824251e-07, -0.23853415, 0.9567076, -0.16676861, -0.04034547, 0.16181472, 0.98599607, 0, 0, 0)
 mesh = SubResource("BoxMesh_5vw27")
 skeleton = NodePath("../..")
 
