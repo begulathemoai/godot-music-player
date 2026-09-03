@@ -17,11 +17,11 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="gofy ahh music player"
 run/main_scene="uid://npg14gmirati"
 config/features=PackedStringArray("4.7", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://assets/images/icon.svg"
 
 [autoload]
 
-Autoload="*res://autoload.gd"
+Autoload="*res://scenes/autoload.gd"
 MusicMeta="*uid://r6rnt2q4tqlw"
 TOML="*res://addons/not_full_toml_yet/parser_writer.gd"
 

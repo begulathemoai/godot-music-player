@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://bewu02bn5abs4"]
+
+[ext_resource type="Script" uid="uid://cgqexu35fg8uy" path="res://scenes/ui/page_container.gd" id="1_24ri1"]
+[ext_resource type="PackedScene" uid="uid://ksntsg6rrapp" path="res://scenes/ui/music_select_button.tscn" id="2_5vn3d"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5vn3d"]
+
+[node name="PageContainer" type="VBoxContainer" unique_id=1943496450]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_24ri1")
+
+[node name="Button1" parent="." unique_id=1421398821 instance=ExtResource("2_5vn3d")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button2" parent="." unique_id=1104234558 instance=ExtResource("2_5vn3d")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button3" parent="." unique_id=427076321 instance=ExtResource("2_5vn3d")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button4" parent="." unique_id=1777570717 instance=ExtResource("2_5vn3d")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button5" parent="." unique_id=1859263824 instance=ExtResource("2_5vn3d")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button6" parent="." unique_id=69547254 instance=ExtResource("2_5vn3d")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button7" parent="." unique_id=748433475 instance=ExtResource("2_5vn3d")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button8" parent="." unique_id=903399565 instance=ExtResource("2_5vn3d")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button9" parent="." unique_id=516751435 instance=ExtResource("2_5vn3d")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button10" parent="." unique_id=1076278989 instance=ExtResource("2_5vn3d")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button11" parent="." unique_id=1351136515 instance=ExtResource("2_5vn3d")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button12" parent="." unique_id=532900993 instance=ExtResource("2_5vn3d")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=691587365]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Left" type="Button" parent="HBoxContainer" unique_id=1008762975]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "<"
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer" unique_id=1767368180]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/CenterContainer" unique_id=2136408218]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Page" type="SpinBox" parent="HBoxContainer/CenterContainer/HBoxContainer" unique_id=1508524921]
+layout_mode = 2
+min_value = 1.0
+value = 1.0
+allow_greater = true
+alignment = 2
+select_all_on_focus = true
+
+[node name="DisplayMax" type="Label" parent="HBoxContainer/CenterContainer/HBoxContainer" unique_id=677559452]
+layout_mode = 2
+size_flags_stretch_ratio = 2.0
+text = "/ 0"
+label_settings = SubResource("LabelSettings_5vn3d")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Right" type="Button" parent="HBoxContainer" unique_id=1055055853]
+layout_mode = 2
+size_flags_horizontal = 3
+text = ">"
+
+[connection signal="resized" from="." to="." method="_on_resized"]
+[connection signal="pressed" from="HBoxContainer/Left" to="." method="_on_left_pressed"]
+[connection signal="value_changed" from="HBoxContainer/CenterContainer/HBoxContainer/Page" to="." method="_on_page_value_changed"]
+[connection signal="pressed" from="HBoxContainer/Right" to="." method="_on_right_pressed"]

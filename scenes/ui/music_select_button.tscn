@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://ksntsg6rrapp"]
+
+[ext_resource type="Script" uid="uid://cumjmyc8aojxn" path="res://scenes/ui/music_select_button.gd" id="1_rp3iy"]
+
+[node name="MusicSelectButton" type="Control" unique_id=1555092071]
+layout_mode = 3
+anchor_right = 0.393229
+anchor_bottom = 0.0617284
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rp3iy")
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="." unique_id=86582737]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_right = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Sample name"
+alignment = 0
+clip_text = true
+
+[connection signal="pressed" from="Button" to="." method="_on_pressed"]
