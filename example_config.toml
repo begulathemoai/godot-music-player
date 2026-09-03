@@ -1,0 +1,100 @@
+##       _____          __  __ _____  
+##      / ____|   /\   |  \/  |  __ \ 
+##     | |  __   /  \  | \  / | |__) |
+##     | | |_ | / /\ \ | |\/| |  ___/ 
+##     | |__| |/ ____ \| |  | | |     
+##      \_____/_/    \_\_|  |_|_|     
+##
+##         EXAMPLE CONFIG FILE
+##          by BegulaTheMoai
+
+[window]
+[window.position]
+
+# Whether the window should start maximized
+start_maximized=false
+
+[background]
+
+[background.mode]
+## One of the following :
+#	"GRADIENT" (default). The background uses a gradient tinted with the main thumbnail color.
+#	"THUMBNAIL". The thumbnail is directly used.
+background_mode="GRADIENT"
+
+
+[background.shader]
+## One of the following :
+#	"AUTO" (default). The shader updates with volume changes
+#	A float. Ranges from 0.0 to 5.0.
+shader_level="AUTO" 
+
+[background.scale]
+# The background scale
+## One of the following :
+#	"AUTO" (default). The background scales with volume changes
+#	A float. 
+background_scale="AUTO"
+
+[background.color]
+# The background color
+## One of the following :
+#	"AUTO" (default). The background color is fetched from the mp3 file's metadata
+#	A string containing 3 semicolon-separated floats. Format : "h;s;v"
+background_color="AUTO"
+
+# The background color used when the mp3 file has no thumbnail
+## Must be the following :
+#	A string containing 3 semicolon-separated floats. Format : "h;s;v"
+default_background_color="0.66;1.0;1.0"
+
+# Exponents used to make colors more vibrant
+## Must be the following :
+#	A float
+red_exponent=1.5
+green_exponent=1.5
+blue_exponent=1.5
+
+# Number of samples taken on the song's thumbnail to get the background color. 2 dimensional.
+## Must be the following :
+#	An integer
+x_samples=11
+y_samples=11
+
+[background.mouse]
+# Whether moving the mouse moves the background
+## Must be the following :
+#	A boolean
+move_background_with_mouse=true
+
+# Ratio of background movement to mouse movement
+## Must be the following :
+#	A float
+mouse_background_movement_ratio=0.05
+
+[background.text]
+
+# Displayed text in the center of the background
+## Must be the following :
+#	A string
+background_text="GAMP"
+
+# Switches the text shader to use the background color instead of the specified color
+## Must be the following :
+#	A boolean
+dynamic_text_color=false
+
+# The text's color
+## Must be the following :
+#	A string following the format "h;s;v" or "h;s;v;a"
+text_color="0.0;1.0;1.0;1.0"
+
+[navbar]
+
+[nabvar.track_display]
+
+# How the track data is displayed
+## One of the following :
+#	"simple" -> only displays the track's name
+#	"with_thumbnail" -> adds the track's thumbnail to the left of its name
+track_display_mode="with_thumbnail"

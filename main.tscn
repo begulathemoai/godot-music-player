@@ -1,0 +1,733 @@
+[gd_scene format=3 uid="uid://npg14gmirati"]
+
+[ext_resource type="Script" uid="uid://71v7ues7fsdd" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://yv7ypxf6k35x" path="res://spinny_things.gd" id="2_7mycd"]
+[ext_resource type="Shader" uid="uid://dj1rdqcfkjmj6" path="res://visualizer.tres" id="3_h2yge"]
+[ext_resource type="Shader" uid="uid://b5uo73ay3oxdb" path="res://invert.tres" id="4_1bvp3"]
+[ext_resource type="Shader" uid="uid://bbs2yp8l7o1nj" path="res://zoom_line.tres" id="4_7mycd"]
+[ext_resource type="Script" uid="uid://gr1dsp0x20ii" path="res://greyscale_visualizer.gd" id="4_lquwl"]
+[ext_resource type="PackedScene" uid="uid://bewu02bn5abs4" path="res://page_container.tscn" id="6_5vw27"]
+[ext_resource type="Texture2D" uid="uid://baahn80qny46j" path="res://btm.png" id="9_4c57u"]
+[ext_resource type="AudioStream" uid="uid://6al33ess7inx" path="res://circles.mp3" id="9_kek77"]
+
+[sub_resource type="Curve" id="Curve_272bh"]
+_limits = [0.0, 1.0, 0.0, 2.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.991354, 0), 0.0, 0.0, 0, 0, Vector2(1.17579, 0.534659), 1.87653, 1.87653, 0, 0, Vector2(2, 1), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_7mycd"]
+colors = PackedColorArray(1, 1, 1, 0.784314, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_272bh"]
+gradient = SubResource("Gradient_7mycd")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1bvp3"]
+shader = ExtResource("3_h2yge")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_272bh"]
+viewport_path = NodePath("Background")
+
+[sub_resource type="Curve" id="Curve_lquwl"]
+_limits = [1.0, 1.5, 0.0, 5.0]
+_data = [Vector2(0.0247525, 1.00225), 0.0, 0.0, 0, 0, Vector2(0.891089, 1), -0.00259406, -0.00336245, 1, 0, Vector2(3.49, 1.5), 0.0975113, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_272bh"]
+shader = ExtResource("4_7mycd")
+
+[sub_resource type="Animation" id="Animation_7mycd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Music Select:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lquwl"]
+resource_name = "music_select_down"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Music Select:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -658), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_272bh"]
+resource_name = "music_select_up"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Music Select:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -658)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5vw27"]
+_data = {
+&"RESET": SubResource("Animation_7mycd"),
+&"music_select_down": SubResource("Animation_lquwl"),
+&"music_select_up": SubResource("Animation_272bh")
+}
+
+[sub_resource type="Gradient" id="Gradient_lquwl"]
+colors = PackedColorArray(0.454524, 0.454524, 0.454524, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7mycd"]
+gradient = SubResource("Gradient_lquwl")
+fill_from = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_1bvp3"]
+offsets = PackedFloat32Array(0, 0.352159, 0.697674, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lquwl"]
+gradient = SubResource("Gradient_1bvp3")
+
+[sub_resource type="Curve" id="Curve_1bvp3"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.399293, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_lquwl"]
+curve = SubResource("Curve_1bvp3")
+
+[sub_resource type="Curve" id="Curve_7mycd"]
+_limits = [0.0, 1.0, 0.0, 2.0]
+_data = [Vector2(0, 0.01), 0.0, 0.0, 0, 0, Vector2(0.29, 0.15), 0.735265, 1.14587, 0, 0, Vector2(2, 0.1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_272bh"]
+curve = SubResource("Curve_7mycd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5vw27"]
+particle_flag_disable_z = true
+angle_min = -180.0
+angle_max = 180.0
+spread = 180.0
+initial_velocity_min = 500.0
+initial_velocity_max = 500.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_272bh")
+alpha_curve = SubResource("CurveTexture_lquwl")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lquwl"]
+shader = ExtResource("4_1bvp3")
+
+[sub_resource type="Animation" id="Animation_kek77"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Intro/RichTextLabel:anchor_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.394]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Intro/RichTextLabel:anchor_bottom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FuckassVisualizer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Intro/RichTextLabel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("UI:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_4c57u"]
+resource_name = "intro"
+length = 5.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Intro/AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.41),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}, {
+"args": [],
+"method": &"stop"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Intro/RichTextLabel:anchor_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.4333),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [1.0, 0.352]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Intro/RichTextLabel:anchor_bottom")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.43333),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [1.3, 0.651]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("FuckassVisualizer:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.43333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Intro/RichTextLabel:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2.43333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("UI:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2.43333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(2.43333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"load_last_mus"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_efxa6"]
+_data = {
+&"RESET": SubResource("Animation_kek77"),
+&"intro": SubResource("Animation_4c57u")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vw27"]
+shading_mode = 0
+albedo_texture = ExtResource("9_4c57u")
+uv1_scale = Vector3(3, 2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5vw27"]
+material = SubResource("StandardMaterial3D_5vw27")
+
+[sub_resource type="Animation" id="Animation_5vw27"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.16755147, 4.892769e-07, -0.24434625)]
+}
+
+[sub_resource type="Animation" id="Animation_efxa6"]
+resource_name = "new_animation"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(3.1415927, 3.1415927, 3.1415927), Vector3(6.2831855, 6.2831855, 6.2831855)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dg77c"]
+_data = {
+&"RESET": SubResource("Animation_5vw27"),
+&"new_animation": SubResource("Animation_efxa6")
+}
+
+[node name="Main" type="Node" unique_id=1048735313]
+script = ExtResource("1_0xm2m")
+particle_curve = SubResource("Curve_272bh")
+
+[node name="Backgrounder" type="ColorRect" parent="." unique_id=6724390]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.301961)
+
+[node name="Control" type="Control" parent="." unique_id=1440099169]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(576, 324)
+mouse_filter = 2
+script = ExtResource("2_7mycd")
+
+[node name="TextureRect" type="TextureRect" parent="Control" unique_id=1265035971]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.194444
+anchor_top = 0.12963
+anchor_right = 0.628945
+anchor_bottom = 0.901469
+offset_right = -0.544067
+offset_bottom = -0.152039
+texture = SubResource("GradientTexture2D_272bh")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" type="TextureRect" parent="Control" unique_id=1711842098]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.361111
+anchor_top = 0.12963
+anchor_right = 0.795611
+anchor_bottom = 0.901469
+offset_right = -0.544067
+offset_bottom = -0.152039
+texture = SubResource("GradientTexture2D_272bh")
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="Control" unique_id=1126019182]
+wait_time = 0.2
+autostart = true
+
+[node name="FuckassVisualizer" type="TextureRect" parent="." unique_id=1948971251]
+modulate = Color(1, 1, 1, 0.392157)
+material = SubResource("ShaderMaterial_1bvp3")
+instance_shader_parameters/Strength = 5.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(576, 324)
+mouse_filter = 2
+texture = SubResource("ViewportTexture_272bh")
+expand_mode = 1
+script = ExtResource("4_lquwl")
+scale_curve = SubResource("Curve_lquwl")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1508141171]
+visible = false
+material = SubResource("ShaderMaterial_272bh")
+instance_shader_parameters/ZoomPos = 0.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UI" type="Control" parent="." unique_id=341957624]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HSlider" type="HSlider" parent="UI" unique_id=2056582626]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.965
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -0.320007
+offset_right = -10.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_neighbor_top = NodePath("../MainButtonContainer/PauseButton")
+focus_previous = NodePath("../MainButtonContainer/RandomButton")
+step = 0.01
+scrollable = false
+
+[node name="RichTextLabel" type="Label" parent="UI" unique_id=1776790398]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.898111
+anchor_right = 0.432
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = 0.0239868
+offset_right = 0.335999
+offset_bottom = -33.0
+grow_vertical = 0
+tooltip_text = "itfgrdsiogtdfo_g"
+mouse_filter = 1
+vertical_alignment = 2
+text_overrun_behavior = 3
+
+[node name="Time" type="Label" parent="UI" unique_id=1975514543]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.558
+anchor_top = 0.899654
+anchor_right = 0.999708
+anchor_bottom = 1.0
+offset_left = 0.18396
+offset_top = 0.0239868
+offset_right = -10.6639
+offset_bottom = -26.0
+grow_vertical = 0
+tooltip_text = "itfgrdsiogtdfo_g"
+mouse_filter = 1
+horizontal_alignment = 2
+vertical_alignment = 2
+text_overrun_behavior = 3
+
+[node name="MainButtonContainer" type="HBoxContainer" parent="UI" unique_id=937800981]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.359
+anchor_top = 0.91663
+anchor_right = 0.641
+anchor_bottom = 0.964741
+offset_left = 0.431976
+offset_top = 0.0238647
+offset_right = -0.432007
+offset_bottom = -0.152039
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="LoopButton" type="Button" parent="UI/MainButtonContainer" unique_id=334959695]
+layout_mode = 2
+focus_neighbor_right = NodePath("../PauseButton")
+focus_neighbor_bottom = NodePath("../../HSlider")
+focus_next = NodePath("../PauseButton")
+toggle_mode = true
+text = "1LP"
+
+[node name="PauseButton" type="Button" parent="UI/MainButtonContainer" unique_id=1580407725]
+layout_mode = 2
+focus_neighbor_left = NodePath("../LoopButton")
+focus_neighbor_right = NodePath("../RandomButton")
+focus_neighbor_bottom = NodePath("../../HSlider")
+focus_next = NodePath("../RandomButton")
+focus_previous = NodePath("../LoopButton")
+toggle_mode = true
+text = "PAU"
+
+[node name="RandomButton" type="Button" parent="UI/MainButtonContainer" unique_id=1358300451]
+layout_mode = 2
+focus_neighbor_left = NodePath("../PauseButton")
+focus_neighbor_bottom = NodePath("../../HSlider")
+focus_next = NodePath("../../HSlider")
+focus_previous = NodePath("../PauseButton")
+toggle_mode = true
+text = "RAN"
+
+[node name="Music Select" type="Control" parent="UI" unique_id=1847585510]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="UI/Music Select" unique_id=1826452451]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = 21.0
+offset_right = -21.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Music Select/Panel" unique_id=326802825]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Music Select/Panel/MarginContainer" unique_id=2080997131]
+layout_mode = 2
+
+[node name="Search" type="LineEdit" parent="UI/Music Select/Panel/MarginContainer/VBoxContainer" unique_id=352279273]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Search for songs..."
+
+[node name="HSeparator" type="HSeparator" parent="UI/Music Select/Panel/MarginContainer/VBoxContainer" unique_id=1068874885]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Music Select/Panel/MarginContainer/VBoxContainer" unique_id=603141726]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="SongList" parent="UI/Music Select/Panel/MarginContainer/VBoxContainer/ScrollContainer" unique_id=469535677 instance=ExtResource("6_5vw27")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MusicBarAnim" type="AnimationPlayer" parent="UI" unique_id=388478834]
+libraries/ = SubResource("AnimationLibrary_5vw27")
+
+[node name="LookupContainer" type="VBoxContainer" parent="UI" unique_id=311255937]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.87375
+anchor_right = 1.0
+anchor_bottom = 0.332037
+offset_left = 0.439941
+offset_top = 23.0
+offset_right = -22.0
+offset_bottom = -0.160004
+grow_horizontal = 0
+mouse_filter = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/LookupContainer" unique_id=1334161345]
+clip_contents = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/LookupContainer/ScrollContainer" unique_id=1365297215]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AddElementButton" type="Button" parent="UI/LookupContainer/ScrollContainer/VBoxContainer" unique_id=12232010]
+layout_mode = 2
+text = "+"
+
+[node name="Input" type="LineEdit" parent="UI/LookupContainer/ScrollContainer/VBoxContainer/AddElementButton" unique_id=771062942]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = -130.0
+grow_horizontal = 0
+placeholder_text = "/path/to/dir"
+
+[node name="ScanningText" type="RichTextLabel" parent="UI/LookupContainer" unique_id=1821414052]
+layout_mode = 2
+tooltip_text = "Scanning directories for mp3 files..."
+text = "Scanning..."
+fit_content = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=80478364]
+volume_db = -10.0
+autoplay = true
+
+[node name="Background" type="SubViewport" parent="." unique_id=1900024416]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(1152, 648)
+
+[node name="TextureRect" type="TextureRect" parent="Background" unique_id=1354039847]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(576, 324)
+texture = SubResource("GradientTexture2D_7mycd")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Background" unique_id=1436739590]
+position = Vector2(576, 324)
+amount = 16
+texture = SubResource("GradientTexture2D_lquwl")
+lifetime = 2.0
+local_coords = true
+trail_enabled = true
+trail_lifetime = 0.5
+trail_sections = 16
+trail_section_subdivisions = 16
+process_material = SubResource("ParticleProcessMaterial_5vw27")
+
+[node name="RichTextLabel" type="Label" parent="Background" unique_id=573782219]
+material = SubResource("ShaderMaterial_lquwl")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(146.5, 68.5)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 100
+text = "GAMP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Intro" type="AnimationPlayer" parent="." unique_id=1637238892]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_efxa6")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Intro" unique_id=996092053]
+stream = ExtResource("9_kek77")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Intro" unique_id=1133935486]
+material = SubResource("ShaderMaterial_lquwl")
+anchors_preset = -1
+anchor_top = 0.394
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(146.5, 97.012)
+theme_override_font_sizes/normal_font_size = 96
+theme_override_font_sizes/bold_font_size = 96
+bbcode_enabled = true
+text = "G.A.M.P."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Intro/RichTextLabel" unique_id=1710011755]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -71.5
+offset_top = 48.5
+offset_right = 71.5
+offset_bottom = 71.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "By BegulaTheMoai"
+
+[node name="Node3D" type="Node3D" parent="." unique_id=38851520]
+
+[node name="Camera3D" type="Camera3D" parent="Node3D" unique_id=1586380315]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5036601)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D" unique_id=1348569737]
+transform = Transform3D(0.9702956, 0.2419221, 4.824251e-07, -0.23853417, 0.95670766, -0.16676861, -0.04034547, 0.16181472, 0.98599607, 0, 0, 0)
+mesh = SubResource("BoxMesh_5vw27")
+skeleton = NodePath("../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node3D" unique_id=109914669]
+libraries/ = SubResource("AnimationLibrary_dg77c")
+autoplay = &"new_animation"
+
+[connection signal="timeout" from="Control/Timer" to="Control" method="_on_timer_timeout"]
+[connection signal="drag_ended" from="UI/HSlider" to="." method="_on_pos_bar_drag_ended"]
+[connection signal="drag_started" from="UI/HSlider" to="." method="_on_pos_bar_drag_started"]
+[connection signal="toggled" from="UI/MainButtonContainer/RandomButton" to="." method="_on_random_button_toggled"]
+[connection signal="text_changed" from="UI/Music Select/Panel/MarginContainer/VBoxContainer/Search" to="." method="_on_search_text_changed"]
+[connection signal="text_submitted" from="UI/Music Select/Panel/MarginContainer/VBoxContainer/Search" to="." method="_on_search_text_submitted"]
+[connection signal="pressed" from="UI/LookupContainer/ScrollContainer/VBoxContainer/AddElementButton" to="." method="_on_add_element_button_pressed"]
+[connection signal="text_submitted" from="UI/LookupContainer/ScrollContainer/VBoxContainer/AddElementButton/Input" to="." method="_on_input_text_submitted"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
