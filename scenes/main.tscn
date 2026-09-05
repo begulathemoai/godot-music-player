@@ -9,6 +9,7 @@
 [ext_resource type="Shader" uid="uid://b5uo73ay3oxdb" path="res://assets/shaders/invert.tres" id="7_85g3d"]
 [ext_resource type="AudioStream" uid="uid://6al33ess7inx" path="res://assets/audio/circles.mp3" id="8_jbj1t"]
 [ext_resource type="Texture2D" uid="uid://baahn80qny46j" path="res://assets/images/btm.png" id="9_muem4"]
+[ext_resource type="Script" uid="uid://cadgdmq1utpiu" path="res://scenes/logic/queue_manager.gd" id="10_choun"]
 
 [sub_resource type="Curve" id="Curve_272bh"]
 _limits = [0.0, 1.0, 0.0, 2.0]
@@ -345,9 +346,10 @@ _data = {
 &"new_animation": SubResource("Animation_efxa6")
 }
 
-[node name="Main" type="Node" unique_id=1048735313]
+[node name="Main" type="Node" unique_id=1048735313 node_paths=PackedStringArray("queue")]
 script = ExtResource("1_85g3d")
 particle_curve = SubResource("Curve_272bh")
+queue = NodePath("QueueManager")
 
 [node name="Backgrounder" type="ColorRect" parent="." unique_id=6724390]
 anchors_preset = 15
@@ -709,6 +711,7 @@ grow_vertical = 2
 text = "By BegulaTheMoai"
 
 [node name="Node3D" type="Node3D" parent="." unique_id=38851520]
+visible = false
 
 [node name="Camera3D" type="Camera3D" parent="Node3D" unique_id=1586380315]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5036601)
@@ -721,6 +724,10 @@ skeleton = NodePath("../..")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Node3D" unique_id=109914669]
 libraries/ = SubResource("AnimationLibrary_dg77c")
 autoplay = &"new_animation"
+
+[node name="QueueManager" type="Node" parent="." unique_id=444441483]
+script = ExtResource("10_choun")
+metadata/_custom_type_script = "uid://cadgdmq1utpiu"
 
 [connection signal="timeout" from="Control/Timer" to="Control" method="_on_timer_timeout"]
 [connection signal="drag_ended" from="UI/HSlider" to="." method="_on_pos_bar_drag_ended"]

@@ -47,6 +47,7 @@ var active = false:
 				tw.tween_property($Control,"modulate",Color.TRANSPARENT,0.5)
 		active = value
 var config : Dictionary = {}
+@export var queue : QueueManager
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
@@ -303,7 +304,7 @@ func _on_input_text_submitted(new_text: String) -> void:
 func _lookup_dirs(value:Array):
 	if scanning:return
 	scanning = true
-	register = []
+	queue.song_register = []
 	for i in value:
 		Autoload.logger("Found "+i+"...",Autoload.LOG_LEVEL.VERBOSE,"LOOKUP_MANAGER")
 		var files = DirAccess.open(i)
@@ -312,10 +313,10 @@ func _lookup_dirs(value:Array):
 			if not file.ends_with(".mp3"):continue
 			count += 1
 			#Autoload.logger("Adding entry to playlist : "+file,Autoload.LOG_LEVEL.VERBOSE,"LOOKUP_MANAGER")
-			register.append(i+"/"+file)
+			queue.add_to_register(i+"/"+file)
 			#await get_tree().create_timer(0.001).timeout
 		Autoload.logger("Added "+str(count)+" entries to the playlist.",Autoload.LOG_LEVEL.VERBOSE,"LOOKUP_MANAGER")
-	%SongList.reg = register
+	%SongList.song_reg = queue.song_register
 	scanning = false
 
 func save_lookup_dirs():
@@ -504,7 +505,7 @@ func check_active():
 
 func _on_search_text_changed(new_text: String) -> void:
 	if new_text == "": 
-		%SongList.reg = register
+		%SongList.song_reg = queue.song_register
 		return
 	
 	var tags = []
@@ -515,10 +516,10 @@ func _on_search_text_changed(new_text: String) -> void:
 		else:
 			other.append(i)
 	new_text = " ".join(other)
-	var new_reg = []
-	for i : String in register:
+	var new_reg : Array[QueueManager.Song]= []
+	for i : QueueManager.Song in queue.song_register:
 		var check : int = 0
-		if new_text.to_lower() in i.to_lower() or new_text == "":
+		if new_text.to_lower() in i.filepath.to_lower() or new_text == "":
 			check += 1
 		
 		for j : String in tags:
@@ -528,14 +529,14 @@ func _on_search_text_changed(new_text: String) -> void:
 					if int(j) < $UI/LookupContainer/ScrollContainer/VBoxContainer.get_child_count():
 						var folder_path = $UI/LookupContainer/ScrollContainer/VBoxContainer.get_child(int(j))
 						if folder_path is LookupPath:
-							if folder_path.filepath.trim_suffix("/") == i.get_base_dir():
+							if folder_path.filepath.trim_suffix("/") == i.filepath.get_base_dir():
 								check += 1
 				else:
-					if j.trim_suffix("/") == i.get_base_dir():
+					if j.trim_suffix("/") == i.filepath.get_base_dir():
 							check += 1
 		if check == len(tags) + 1:
 			new_reg.append(i)
-	%SongList.reg = new_reg
+	%SongList.song_reg = new_reg
 
 func load_last_mus() -> void:
 	if FileAccess.file_exists("user://config/last_song"):

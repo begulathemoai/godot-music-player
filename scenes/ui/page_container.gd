@@ -1,9 +1,9 @@
 extends Container
 class_name PageContainer
 
-var reg = []:
+var song_reg : Array[QueueManager.Song]:
 	set(value):
-		reg=value
+		song_reg=value
 		update_display()
 var page = 0:
 	set(value):
@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 		_on_right_pressed()
 	elif Input.is_mouse_button_pressed(MOUSE_BUTTON_WHEEL_DOWN) and mouse_inside:
 		_on_left_pressed()
-	page_max = ceil(len(reg) / rows_per_page)
+	page_max = ceil(len(song_reg) / rows_per_page)
 	if page > page_max:
 		page=page_max
 	if has_node("HBoxContainer/CenterContainer/HBoxContainer/DisplayMax"):
@@ -45,13 +45,13 @@ func update_display():
 	var inc = 0
 	for i in get_children():
 		if i is MusicSelectButton:
-			if page*rows_per_page+inc > len(reg) - 1:
+			if page*rows_per_page+inc > len(song_reg) - 1:
 				i.get_node("Button").disabled = true
-				i.filepath = ""
+				i.song = null
 				i.update_text()
 			else:
 				i.get_node("Button").disabled = false
-				i.filepath = reg[page*rows_per_page+inc]
+				i.song = song_reg[page*rows_per_page+inc]
 				i.update_text()
 			inc += 1
 
